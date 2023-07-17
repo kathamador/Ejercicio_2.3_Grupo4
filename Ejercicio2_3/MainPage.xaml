@@ -1,0 +1,77 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Ejercicio2_3.MainPage"
+             xmlns:local="clr-namespace:Ejercicio2_3">
+    <ContentPage.Title>
+        Registrar Fotos
+    </ContentPage.Title>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ImageNullOrEmptyConverter x:Key="ImageNullOrEmptyConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <Frame HorizontalOptions="FillAndExpand"
+               HeightRequest="350"
+               CornerRadius="5"
+               BorderColor="LightGray"
+               BackgroundColor="White"
+               Margin="5,5,5,5">
+            <Grid>
+                <Image x:Name="fotoSitio"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Source="usuario.png"
+                       Aspect="AspectFit"
+                       Margin="5">
+                </Image>
+                <Image x:Name="imagenPlaceholder"
+                       Source="imagen.png"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Aspect="AspectFit"
+                       Margin="5"
+                       IsVisible="{Binding Source={x:Reference fotoSitio}, Path=Source, Converter={StaticResource ImageNullOrEmptyConverter}}" />
+            </Grid>
+        </Frame>
+
+        <Button Text="Tomar Foto"
+                x:Name="btnFoto"
+                Clicked="btnFoto_Clicked"
+                BackgroundColor="#2193A2"
+                CornerRadius="15"
+                Margin="50,10,50,10"
+                TextColor="White"
+                FontAttributes="Bold"
+                FontSize="15" />
+
+        <Label Text="Descripcion" Margin="10" FontSize="Body" />
+        <Entry x:Name="txtDescripcion" Margin="10" Keyboard="Chat" />
+
+        <FlexLayout JustifyContent="Center">
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Agregar"
+                        x:Name="btnAdd"
+                        Clicked="btnAdd_Clicked"
+                        BackgroundColor="#2193A2"
+                        CornerRadius="15"
+                        Margin="10"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        FontSize="15" />
+
+                <Button Text="Listar Sitios"
+                        x:Name="btnList"
+                        Clicked="btnList_Clicked"
+                        BackgroundColor="#2193A2"
+                        CornerRadius="15"
+                        Margin="10"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        FontSize="15" />
+            </StackLayout>
+        </FlexLayout>
+    </StackLayout>
+</ContentPage>

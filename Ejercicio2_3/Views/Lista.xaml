@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Convertidor="clr-namespace:Ejercicio2_3.Converter"
+             x:Class="Ejercicio2_3.Views.Lista">
+    <ContentPage.Title>
+        LISTA DE FOTOS
+    </ContentPage.Title>
+    <!--se declara recurso de pagina que se usa con la clase convertidor que creamos en el contenpage-->
+    <ContentPage.Resources>
+        <!--recurso de diccionario-->
+        <ResourceDictionary>
+            <!--se usa para disparar la funcion que ya tenemos-->
+            <Convertidor:ByteArrayToImage x:Key="ByteToImage"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="AliceBlue">
+            <CollectionView x:Name="ListaFoto" SelectionMode="Single" Margin="20">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="5">
+                            <Label Grid.Column="0" Text="{Binding id}" FontAttributes="Bold" FontSize="20" VerticalOptions="Center"/>
+                            <Label Grid.Column="1" Text="{Binding descripcion}" FontSize="15" VerticalOptions="Center"/>
+                            <Image Source="{Binding foto, Converter={StaticResource ByteToImage}}"
+                                   WidthRequest="50"
+                                   HeightRequest="50"
+                                   Aspect="AspectFit"
+                                   Margin="0,0,0,10"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
